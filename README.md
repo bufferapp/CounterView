@@ -18,23 +18,23 @@ The CounterView has 3 different counter types, you can set this mode using the c
 
 view_counter.counterMode = CounterMode.ASCENDING
 
-![Ascending counter](../art/ascending.gif)
+![Ascending counter](art/ascending.gif)
 
 ### Descending
 
 view_counter.counterMode = CounterMode.DESCENDING
 
-![Descending counter](../art/descending.gif)
+![Descending counter](art/descending.gif)
 
 ### Standard
 
 view_counter.counterMode = CounterMode.STANDARD
 
-![Counter](../art/counter.gif)
+![Counter](art/counter.gif)
 
 ## Hiding the CounterView
 
-![Hiding the counter](../art/display.gif)
+![Hiding the counter](art/display.gif)
 
 In some cases you may wish to hide the CounterView until there are only a certain
 number of characters available for the input text. You can set this value using:
