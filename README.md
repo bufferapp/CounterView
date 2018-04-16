@@ -57,7 +57,11 @@ That way, this means that the counter won't be shown until the user is someNumbe
 
 ## Using the CounterView
 
-The CounterView, as shown in the sample app, can be added to your layout like so:
+You will need to begin by adding the dependency to your project:
+
+    implementation 'org.buffer.android:counter-view:0.0.2'
+
+Next, as shown in the sample app, can be added to your layout like so:
 
     <org.buffer.android.counterview.CounterView
             android:id="@+id/view_counter"
