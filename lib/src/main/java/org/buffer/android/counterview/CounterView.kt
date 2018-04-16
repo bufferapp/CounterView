@@ -67,6 +67,9 @@ class CounterView : TextView {
                 counterErrorTextColor = styleAttributes
                         .getColor(R.styleable.CounterView_counterErrorTextColor,
                                 ContextCompat.getColor(getContext(), R.color.off_black))
+                val counterMode = styleAttributes
+                        .getString(R.styleable.CounterView_counterMode)
+                if (counterMode != null) this.counterMode = CounterMode.fromId(counterMode)
             } finally {
                 styleAttributes.recycle()
             }

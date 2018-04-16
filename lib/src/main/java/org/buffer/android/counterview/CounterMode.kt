@@ -1,12 +1,12 @@
 package org.buffer.android.counterview
 
-enum class CounterMode(val id: Int) {
+enum class CounterMode(val id: String) {
 
-    DESCENDING(0), ASCENDING(1), STANDARD(2);
+    DESCENDING("descending"), ASCENDING("ascending"), STANDARD("standard");
 
     companion object {
-        fun fromId(id: Int) {
-            when (id) {
+        fun fromId(id: String): CounterMode {
+            return when (id) {
                 DESCENDING.id -> {
                     DESCENDING
                 }
