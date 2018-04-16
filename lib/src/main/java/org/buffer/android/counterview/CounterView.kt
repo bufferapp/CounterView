@@ -2,14 +2,14 @@ package org.buffer.android.counterview
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 
-class CounterView : TextView {
+class CounterView : AppCompatTextView {
 
     @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
             : super(context, attrs, defStyle) {

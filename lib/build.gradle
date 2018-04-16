@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 27
@@ -18,8 +17,23 @@ android {
     }
 }
 
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
+}
+
+
+publish {
+    repoName = 'Maven'
+    userOrg = 'buffer'
+    groupId = 'org.buffer.android'
+    artifactId = 'counter-view'
+    publishVersion = '0.0.1'
+    desc = 'A simple Android counter view for showing edittext character counts'
+    website = 'https://github.com/bufferapp/CounterView'
 }
