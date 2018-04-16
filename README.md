@@ -16,19 +16,31 @@ The CounterView has 3 different counter types, you can set this mode using the c
 
 ### Ascending
 
-view_counter.counterMode = CounterMode.ASCENDING
+    view_counter.counterMode = CounterMode.ASCENDING
+
+or 
+
+    app:counterMode="ascending"
 
 ![Ascending counter](art/ascending.gif)
 
 ### Descending
 
-view_counter.counterMode = CounterMode.DESCENDING
+    view_counter.counterMode = CounterMode.DESCENDING
+
+or
+
+    app:counterMode="descending"
 
 ![Descending counter](art/descending.gif)
 
 ### Standard
 
-view_counter.counterMode = CounterMode.STANDARD
+    view_counter.counterMode = CounterMode.STANDARD
+    
+or
+
+    app:counterMode="standard"
 
 ![Counter](art/counter.gif)
 
