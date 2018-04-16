@@ -65,3 +65,7 @@ The CounterView, as shown in the sample app, can be added to your layout like so
             android:layout_height="wrap_content"
             app:counterErrorTextColor="@color/colorAccent"
             app:counterTextColor="@color/colorPrimary" />
+            
+ You then need to attach the CounterView to the desired edittext using:
+ 
+     view_counter.attachToEditText(view_input)
