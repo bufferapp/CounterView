@@ -59,7 +59,7 @@ That way, this means that the counter won't be shown until the user is someNumbe
 
 You will need to begin by adding the dependency to your project:
 
-    implementation 'org.buffer.android:counter-view:0.0.2'
+    implementation 'org.buffer.android:counter-view:1.0'
 
 Next, as shown in the sample app, can be added to your layout like so:
 
