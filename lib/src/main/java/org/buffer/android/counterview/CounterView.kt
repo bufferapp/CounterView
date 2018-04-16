@@ -14,7 +14,6 @@ class CounterView : AppCompatTextView {
     @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
             : super(context, attrs, defStyle) {
         handleAttributes(context, attrs)
-        this.counterMode = CounterMode.STANDARD
         this.textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 updateCounter(s.length)
@@ -28,7 +27,7 @@ class CounterView : AppCompatTextView {
 
     private val textWatcher: TextWatcher
     var textView: EditText? = null
-    var counterMode: CounterMode
+    lateinit var counterMode: CounterMode
     var charactersRemainingUntilCounterDisplay: Int? = null
         set(value) {
             field = value
@@ -69,7 +68,11 @@ class CounterView : AppCompatTextView {
                                 ContextCompat.getColor(getContext(), R.color.off_black))
                 val counterMode = styleAttributes
                         .getString(R.styleable.CounterView_counterMode)
-                if (counterMode != null) this.counterMode = CounterMode.fromId(counterMode)
+                if (counterMode != null) {
+                    this.counterMode = CounterMode.fromId(counterMode)
+                } else {
+                    this.counterMode = CounterMode.STANDARD
+                }
             } finally {
                 styleAttributes.recycle()
             }

@@ -33,7 +33,7 @@ publish {
     userOrg = 'buffer'
     groupId = 'org.buffer.android'
     artifactId = 'counter-view'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.3'
     desc = 'A simple Android counter view for showing edittext character counts'
     website = 'https://github.com/bufferapp/CounterView'
 }
