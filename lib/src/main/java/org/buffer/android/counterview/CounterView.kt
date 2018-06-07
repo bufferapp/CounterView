@@ -16,7 +16,7 @@ class CounterView : AppCompatTextView {
         handleAttributes(context, attrs)
         this.textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                updateCounter(s.length)
+                updateCounterValue(s.length)
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -31,13 +31,13 @@ class CounterView : AppCompatTextView {
     var charactersRemainingUntilCounterDisplay: Int? = null
         set(value) {
             field = value
-            updateCounter(textView?.length() ?: 0)
+            updateCounterValue(textView?.length() ?: 0)
         }
 
     var counterMaxLength: Int = 0
         set(value) {
             field = value
-            updateCounter(textView?.length() ?: 0)
+            updateCounterValue(textView?.length() ?: 0)
         }
 
     private var counterTextColor = -1
@@ -54,6 +54,31 @@ class CounterView : AppCompatTextView {
     fun detachFromEditText() {
         this.textView?.removeTextChangedListener(textWatcher)
         this.textView = null
+    }
+
+    fun updateCounterValue(contentLength: Int) {
+        visibility = charactersRemainingUntilCounterDisplay?.let {
+            if ((counterMaxLength - contentLength) <= it) View.VISIBLE else View.GONE
+        } ?: run {
+            View.VISIBLE
+        }
+        text = when (counterMode) {
+            CounterMode.DESCENDING -> {
+                val remainingcounterMaxLength = counterMaxLength - contentLength
+                remainingcounterMaxLength.toString()
+            }
+            CounterMode.ASCENDING -> {
+                contentLength.toString()
+            }
+            CounterMode.STANDARD -> {
+                contentLength.toString() + "/" + counterMaxLength
+            }
+        }
+        if (contentLength > counterMaxLength) {
+            setTextColor(counterErrorTextColor)
+        } else {
+            setTextColor(counterTextColor)
+        }
     }
 
     private fun handleAttributes(context: Context, attrs: AttributeSet?) {
@@ -76,31 +101,6 @@ class CounterView : AppCompatTextView {
             } finally {
                 styleAttributes.recycle()
             }
-        }
-    }
-
-    private fun updateCounter(contentLength: Int) {
-        visibility = charactersRemainingUntilCounterDisplay?.let {
-            if ((counterMaxLength - contentLength) <= it) View.VISIBLE else View.GONE
-        } ?: run {
-            View.VISIBLE
-        }
-        text = when (counterMode) {
-            CounterMode.DESCENDING -> {
-                val remainingcounterMaxLength = counterMaxLength - contentLength
-                remainingcounterMaxLength.toString()
-            }
-            CounterMode.ASCENDING -> {
-                contentLength.toString()
-            }
-            CounterMode.STANDARD -> {
-                contentLength.toString() + "/" + counterMaxLength
-            }
-        }
-        if (contentLength > counterMaxLength) {
-            setTextColor(counterErrorTextColor)
-        } else {
-            setTextColor(counterTextColor)
         }
     }
 
