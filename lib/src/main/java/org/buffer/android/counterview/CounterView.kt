@@ -56,6 +56,11 @@ class CounterView : AppCompatTextView {
         this.textView = null
     }
 
+    fun updateEnabledState(contentLength: Int) {
+        val charactersUntilDisplay = charactersRemainingUntilCounterDisplay ?: 0
+        setCounterEnabled(contentLength >= counterMaxLength - charactersUntilDisplay)
+    }
+
     fun updateCounterValue(contentLength: Int) {
         visibility = charactersRemainingUntilCounterDisplay?.let {
             if ((counterMaxLength - contentLength) <= it) View.VISIBLE else View.GONE
@@ -104,4 +109,7 @@ class CounterView : AppCompatTextView {
         }
     }
 
+    private fun setCounterEnabled(enabled: Boolean) {
+        visibility = if (enabled) View.VISIBLE else View.GONE
+    }
 }
