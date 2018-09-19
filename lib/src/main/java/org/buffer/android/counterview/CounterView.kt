@@ -1,6 +1,7 @@
 package org.buffer.android.counterview
 
 import android.content.Context
+import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
@@ -40,8 +41,10 @@ class CounterView : AppCompatTextView {
             updateCounterValue(textView?.length() ?: 0)
         }
 
-    private var counterTextColor = -1
-    private var counterErrorTextColor = -1
+    @ColorInt
+    var counterTextColor = -1
+    @ColorInt
+    var counterErrorTextColor = -1
 
     fun attachToEditText(editText: EditText) {
         if (this.textView != null) {
