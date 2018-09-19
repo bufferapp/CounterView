@@ -98,10 +98,10 @@ class CounterView : AppCompatTextView {
             try {
                 counterTextColor = styleAttributes
                         .getColor(R.styleable.CounterView_counterTextColor,
-                                ContextCompat.getColor(getContext(), R.color.red))
+                                ContextCompat.getColor(getContext(), R.color.off_black))
                 counterErrorTextColor = styleAttributes
                         .getColor(R.styleable.CounterView_counterErrorTextColor,
-                                ContextCompat.getColor(getContext(), R.color.off_black))
+                                ContextCompat.getColor(getContext(), R.color.red))
                 val counterMode = styleAttributes
                         .getString(R.styleable.CounterView_counterMode)
                 if (counterMode != null) {
