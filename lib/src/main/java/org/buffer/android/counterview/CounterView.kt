@@ -112,6 +112,10 @@ class CounterView : AppCompatTextView {
             } finally {
                 styleAttributes.recycle()
             }
+        } ?: run {
+            counterErrorTextColor = ContextCompat.getColor(getContext(), R.color.red)
+            counterTextColor = ContextCompat.getColor(getContext(), R.color.off_black)
+            counterMode = CounterMode.STANDARD
         }
     }
 
