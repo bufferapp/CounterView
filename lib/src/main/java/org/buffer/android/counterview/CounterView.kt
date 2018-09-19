@@ -69,16 +69,19 @@ class CounterView : AppCompatTextView {
         }
         text = when (counterMode) {
             CounterMode.DESCENDING -> {
-                val remainingcounterMaxLength = counterMaxLength - contentLength
-                remainingcounterMaxLength.toString()
+                val remainingCounterMaxLength = counterMaxLength - contentLength
+                remainingCounterMaxLength.toString()
             }
             CounterMode.ASCENDING -> {
                 contentLength.toString()
             }
             CounterMode.STANDARD -> {
-                contentLength.toString() + "/" + counterMaxLength
+                 context.getString(R.string.character_count_divider,
+                         contentLength, counterMaxLength)
             }
         }
+        contentDescription = context.getString(R.string.character_count_description,
+                contentLength, counterMaxLength)
         if (contentLength > counterMaxLength) {
             setTextColor(counterErrorTextColor)
         } else {
