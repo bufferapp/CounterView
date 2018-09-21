@@ -32,19 +32,17 @@ class CounterView : AppCompatTextView {
     var charactersRemainingUntilCounterDisplay: Int? = null
         set(value) {
             field = value
-            updateCounterValue(textView?.length() ?: 0)
+            updateCounterValue(textViewContentLength())
         }
 
     var counterMaxLength: Int = 0
         set(value) {
             field = value
-            updateCounterValue(textView?.length() ?: 0)
+            updateCounterValue(textViewContentLength())
         }
 
-    @ColorInt
-    var counterTextColor = -1
-    @ColorInt
-    var counterErrorTextColor = -1
+    private var counterTextColor = -1
+    private var counterErrorTextColor = -1
 
     fun attachToEditText(editText: EditText) {
         if (this.textView != null) {
@@ -85,12 +83,28 @@ class CounterView : AppCompatTextView {
         }
         contentDescription = context.getString(R.string.character_count_description,
                 contentLength, counterMaxLength)
+        updateTextColor(contentLength)
+    }
+
+    fun setCounterTextColor(@ColorInt color: Int) {
+        counterTextColor = color
+        updateTextColor(textViewContentLength())
+    }
+
+    fun setCounterErrorTextColor(@ColorInt color: Int) {
+        counterErrorTextColor = color
+        updateTextColor(textViewContentLength())
+    }
+
+    private fun updateTextColor(contentLength: Int) {
         if (contentLength > counterMaxLength) {
             setTextColor(counterErrorTextColor)
         } else {
             setTextColor(counterTextColor)
         }
     }
+
+    private fun textViewContentLength() = textView?.length() ?: 0
 
     private fun handleAttributes(context: Context, attrs: AttributeSet?) {
         attrs?.let {
