@@ -1,6 +1,7 @@
 package org.buffer.android.counterview
 
 import android.content.Context
+import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
@@ -31,13 +32,13 @@ class CounterView : AppCompatTextView {
     var charactersRemainingUntilCounterDisplay: Int? = null
         set(value) {
             field = value
-            updateCounterValue(textView?.length() ?: 0)
+            updateCounterValue(textViewContentLength())
         }
 
     var counterMaxLength: Int = 0
         set(value) {
             field = value
-            updateCounterValue(textView?.length() ?: 0)
+            updateCounterValue(textViewContentLength())
         }
 
     private var counterTextColor = -1
@@ -82,6 +83,20 @@ class CounterView : AppCompatTextView {
         }
         contentDescription = context.getString(R.string.character_count_description,
                 contentLength, counterMaxLength)
+        updateTextColor(contentLength)
+    }
+
+    fun setCounterTextColor(@ColorInt color: Int) {
+        counterTextColor = color
+        updateTextColor(textViewContentLength())
+    }
+
+    fun setCounterErrorTextColor(@ColorInt color: Int) {
+        counterErrorTextColor = color
+        updateTextColor(textViewContentLength())
+    }
+
+    private fun updateTextColor(contentLength: Int) {
         if (contentLength > counterMaxLength) {
             setTextColor(counterErrorTextColor)
         } else {
@@ -89,16 +104,18 @@ class CounterView : AppCompatTextView {
         }
     }
 
+    private fun textViewContentLength() = textView?.length() ?: 0
+
     private fun handleAttributes(context: Context, attrs: AttributeSet?) {
         attrs?.let {
             val styleAttributes = context.obtainStyledAttributes(it, R.styleable.CounterView, 0, 0)
             try {
                 counterTextColor = styleAttributes
                         .getColor(R.styleable.CounterView_counterTextColor,
-                                ContextCompat.getColor(getContext(), R.color.red))
+                                ContextCompat.getColor(getContext(), R.color.off_black))
                 counterErrorTextColor = styleAttributes
                         .getColor(R.styleable.CounterView_counterErrorTextColor,
-                                ContextCompat.getColor(getContext(), R.color.off_black))
+                                ContextCompat.getColor(getContext(), R.color.red))
                 val counterMode = styleAttributes
                         .getString(R.styleable.CounterView_counterMode)
                 if (counterMode != null) {
@@ -109,6 +126,10 @@ class CounterView : AppCompatTextView {
             } finally {
                 styleAttributes.recycle()
             }
+        } ?: run {
+            counterErrorTextColor = ContextCompat.getColor(getContext(), R.color.red)
+            counterTextColor = ContextCompat.getColor(getContext(), R.color.off_black)
+            counterMode = CounterMode.STANDARD
         }
     }
 
