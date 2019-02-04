@@ -3,7 +3,7 @@
 
     <declare-styleable name="CounterView">
         <attr name="counterErrorTextColor" format="color" />
-        <attr name="counterTextColor" format="color" />
+        <attr name="counterCountColor" format="color" />
         <attr name="counterMode" format="string" />
     </declare-styleable>
 

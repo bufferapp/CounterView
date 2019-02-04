@@ -27,6 +27,6 @@
         android:layout_marginRight="20dp"
         app:counterErrorTextColor="@color/colorAccent"
         app:counterMode="ascending"
-        app:counterTextColor="@color/colorPrimary" />
+        app:counterCountColor="@color/colorPrimary" />
 
 </RelativeLayout>
