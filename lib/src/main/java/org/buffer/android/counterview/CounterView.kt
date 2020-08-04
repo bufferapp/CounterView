@@ -1,14 +1,14 @@
 package org.buffer.android.counterview
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.EditText
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 
 class CounterView @JvmOverloads constructor(
     context: Context,
